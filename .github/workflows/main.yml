@@ -12,6 +12,6 @@ jobs:
       - name: Set up Git repository
         uses: actions/checkout@v1
       - name: Build docker image
-        uses: ユーザー名/リポジトリ名/.github/actions/latex@master
+        uses: habhit/LaTeXGuide/.github/actions/latex@master
         with:
           token: ${{ secrets.GITHUB_TOKEN }}

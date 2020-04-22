@@ -2,7 +2,7 @@
 set -eux
 
 # build pdf (change if necessary)
-ptex2pdf main.tex
+ptex2pdf -l -ot -kanji=utf8 main.tex
 
 # create release
 res=`curl -H "Authorization: token $GITHUB_TOKEN" -X POST https://api.github.com/repos/$GITHUB_REPOSITORY/releases \

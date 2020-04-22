@@ -14,4 +14,4 @@ jobs:
       - name: Build docker image
         uses: habhit/LaTeXGuide/.github/actions/latex@master
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

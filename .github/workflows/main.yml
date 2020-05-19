@@ -4,6 +4,7 @@ on:
   push:
     paths: '*.tex'
     tags: '*-ver.*'
+
 jobs:
   build:
     name: Build

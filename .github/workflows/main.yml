@@ -2,8 +2,8 @@ name: LaTeX to PDF
 
 on:
   push:
-    paths: main.tex
-
+    paths: '*.tex'
+    tags: '*-ver.*'
 jobs:
   build:
     name: Build

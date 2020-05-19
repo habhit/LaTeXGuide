@@ -11,7 +11,7 @@ latexmk -pdfdvi $FILE_NAME.tex
 res=`curl -H "Authorization: token $GITHUB_TOKEN" -X POST https://api.github.com/repos/$GITHUB_REPOSITORY/releases \
 -d "
 {
-  \"tag_name\": \"v$TAG_NAME\",
+  \"tag_name\": \"$TAG_NAME\",
   \"target_commitish\": \"$GITHUB_SHA\",
   \"name\": \"v$GITHUB_SHA\",
   \"draft\": false,

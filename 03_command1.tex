@@ -1,0 +1,251 @@
+\section{コマンドリファレンス}
+\label{sec:command_reference}
+
+今後 \LaTeX で文書作成する際に便利なように，
+実習で取りあげる \LaTeX コマンドについて以下にまとめておく．
+それぞれのコマンドの詳しい使い方はここでは解説しないので，
+不明点があれば教科書\cite{TeXText}を確認すること．
+
+なお，特に注記しない限り，以下のコマンドはすべて文章の本文を記述するときに用いるので，\ref{sec:source}節で示したソースファイルの例では \verb|\begin{document}| から \verb|\end{document}| の間に記述する．
+
+\subsection{特殊文字}
+
+\LaTeX では特別な意味をもつ文字をそのまま出力したいときには表\ref{special}のように書く．
+
+\begin{table}[h]
+    \caption{特殊文字の例}
+    \label{special}
+    \centering
+    \begin{tabular}{c|c}
+        入力 & 出力 \\ \hline
+        \verb|\#| & \# \\
+        \verb|\$| & \$ \\
+        \verb|\%| & \%\\
+        \verb|\&| & \& \\
+        \verb|\_| & \_\\
+        \verb|\{| & \{ \\
+        \verb|\}| & \} \\
+    \end{tabular}
+\end{table}
+
+\subsection{改行}
+\label{sec:return}
+
+\LaTeX　のソースファイルでは改行が一つあっても結果に影響を与えない．
+表\ref{return}にあるように，改行を二つ連続して書く（何もない行をつくる）と改行されて，
+後に続く文章の冒頭は字下げが行われる（インデントありで改行される）．
+つまり，空行は段落の区切りの意味ももっている．
+むやみに使うと読みにくい文書になるので注意すること．
+
+通常，本文の中で強制改行は行わず，段落の区切りでの改行（インデントあり）のみが行われる．
+\verb|\\| で強制改行が可能だが，タイトル・表・数式など特別な場合のみに利用する．
+
+   \begin{table}[h]
+       \caption{改行}
+       \label{return}
+       \centering
+       \begin{tabular}{c|c}
+           入力 & 出力　\\ \hline
+           空行（何もない行）& 改段落（インデントあり改行）\\
+           \verb|\\| & インデントなし改行 \\
+           \verb|\noindent| & インデントの解除
+       \end{tabular}
+   \end{table}
+
+\subsection{書体・文字サイズ}
+
+文章中で強調などの必要があれば表\ref{style_size}のように
+書体や文字サイズを変更することができる．
+ただし，これらを多用すると効果がなくなって逆に読みづらくなるので注意すること．
+特に，本文中で文字サイズを変更すると著しく読みづらくなるので，
+基本的には本文中では文字サイズを変更しないようにする．なお，
+特に日本語を使っているときには，斜体などの書体が無い場合もあるので注意する．
+
+   \begin{table}[h]
+       \caption{書体・文字サイズの変更}
+       \label{style_size}
+       \centering
+       \begin{tabular}{c|c|c}
+           入力 & 出力 & 説明　\\ \hline
+           \verb|\textrm{sample}| & \textrm{sample} & ローマン（基本）\\
+           \verb|\textbf{sample}| & \textbf{sample} & ボールド（太字）\\
+           \verb|\textit{sample}| & \textit{sample} & イタリック（斜体） \\
+           \verb|{\tiny sample}| & {\tiny sample} & \\
+           \verb|{\footnotesize sample}| & {\footnotesize sample} & \\
+           \verb|{\large sample}| & {\large sample} & \\
+           \verb|\Large sample| & {\Large sample} & \\
+           \verb|\LARGE sample| & {\LARGE sample} &
+       \end{tabular}
+   \end{table}
+
+
+\subsection{環境}
+
+\verb|\begin{何々}| と \verb|\end{何々}| によって要素（文章や数式など）を囲むコマンド，
+あるいは囲まれている領域を環境と呼ぶ．
+「何々」の部分に指定するものによって働きが変わってくる
+\footnote{\ref{sec:source}節で示した例にある本文を記述する部分も document 環境である．}．
+
+\subsubsection{配置に関する環境}
+\label{sec:alignment}
+
+例えば，中央揃えをした場合は，
+\begin{screen}
+\begin{verbatim}
+\begin{center}
+中央揃えしたいもの
+\end{center}
+\end{verbatim}
+\end{screen}
+とソースファイルに書けば，
+\begin{screen}
+\begin{center}
+中央揃えしたいもの
+\end{center}
+\end{screen}
+と出力される．他には表\ref{alignment}に示すような環境がある．
+
+   \begin{table}[h]
+       \caption{配置に関する環境}
+       \label{alignment}
+       \centering
+       \begin{tabular}{c|c}
+           環境 & 内容　\\ \hline
+           quote 環境 & 左右の余白（引用に使う） \\
+           center 環境 & 中央揃え \\
+           flushleft 環境 & 左寄せ \\
+           flushright 環境 & 右寄せ
+       \end{tabular}
+   \end{table}
+
+\subsubsection{箇条書きに関する環境}
+
+箇条書きを適切に使うと分かりやすい文章になる．箇条書きに関する環境を表\ref{itemize}に示す．
+
+\begin{table}[h]
+    \caption{箇条書きに関する環境}
+    \label{itemize}
+    \centering
+    \begin{tabular}{c|c}
+        環境 & 内容　\\ \hline
+        itemize 環境 & 箇条書き（各項目の冒頭に同じ記号がつく） \\
+        enumerate 環境 & 番号付き箇条書き（各項目の冒頭に通し番号がつく） \\
+        description 環境 & 見出し付き箇条書き（各項目の冒頭に任意の見出しがつく）
+    \end{tabular}
+\end{table}
+
+
+
+itemize 環境を使う場合は，
+\begin{screen}
+\begin{verbatim}
+\begin{itemize}
+\item テキスト1
+\item テキスト2
+\item テキスト3
+\end{itemize}
+\end{verbatim}
+\end{screen}
+とソースファイルに書けば，
+\begin{screen}
+\begin{itemize}
+\item テキスト1
+\item テキスト2
+\item テキスト3
+\end{itemize}
+\end{screen}
+と出力される．
+
+enumerate 環境を使う場合は，
+\begin{screen}
+\begin{verbatim}
+\begin{enumerate}
+\item テキスト1
+\item テキスト2
+\item テキスト3
+\end{enumerate}
+\end{verbatim}
+\end{screen}
+とソースファイルに書けば，
+\begin{screen}
+\begin{enumerate}
+\item テキスト1
+\item テキスト2
+\item テキスト3
+\end{enumerate}
+\end{screen}
+と出力される．
+
+description 環境を使う場合は，
+\begin{screen}
+\begin{verbatim}
+\begin{description}
+\item[見出し1] テキスト1
+\item[見出し2] テキスト2
+\item[見出し3] テキスト3
+\end{description}
+\end{verbatim}
+\end{screen}
+とソースファイルに書けば，
+\begin{screen}
+\begin{description}
+\item[見出し1] テキスト1
+\item[見出し2] テキスト2
+\item[見出し3] テキスト3
+\end{description}
+\end{screen}
+と出力される．\verb|\item| コマンドの使い方が先の二つの環境とは異なることに注意する．
+
+\subsection{コメント行}
+
+コメント行はタイプセット時には無かったものとして処理される．コメント行をうまく利用すると効率的に文書作成を行える．例えば，以下のような用途がある．
+
+\begin{itemize}
+    \item あとでソースファイルをみたときに参考になるような記述を残しておきたい場合
+    \item タイプセットで何か不具合が発生した際にソースファイルにある不具合の原因を絞り込む場合\footnote{タイプセットでエラーが発生してその原因を探りたいとき，ある部分をコメント行にしたときにタイプセットのエラーが発生しなくなれば，コメント行にした部分が原因である可能性が高い．このようにしてエラーに対処する方法はプログラミングでも有効である．}
+\end{itemize}
+
+ある部分をコメントにすることを「コメントアウト」と呼ぶ．コメントアウトの方法には大きく分けて二つある．
+
+\subsubsection{一つの行のコメント}
+
+行頭に \verb|%| コマンドを付けるとその行はコメントとみなされる．例えば，
+\begin{screen}
+\begin{verbatim}
+あいうえお
+% かきくけこ
+さしすせそ
+\end{verbatim}
+\end{screen}
+とソースファイルに書けば，
+\begin{screen}
+あいうえお
+% かきくけこ
+さしすせそ
+\end{screen}
+と出力される．
+
+\subsubsection{複数行のコメント}
+
+\verb|\iffalse| と \verb|\fi| で挟んだ行はコメントとみなされる．
+例えば，
+\begin{screen}
+\begin{verbatim}
+あいうえお
+\iffalse
+かきくけこ
+さしすせそ
+\fi
+たちつてと
+\end{verbatim}
+\end{screen}
+とソースファイルに書けば，
+\begin{screen}
+あいうえお
+\iffalse
+かきくけこ
+さしすせそ
+\fi
+たちつてと
+\end{screen}
+と出力される．

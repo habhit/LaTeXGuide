@@ -1,0 +1,211 @@
+\subsection{数式の記述}
+\label{sec:math}
+
+\ref{sec:TeXandLaTeX}節で述べたように，数式を簡単に入力できるのが \LaTeX の大きな特長の一つである．最近は，MS Word などでも数式を簡単に入力できるようになっているが，\LaTeX の記法にならっていることが多いので，\LaTeX に習熟していれば様々な場面でも役立つ，
+
+標準でもある程度の数式を記述できるが，\AmS - \LaTeX　パッケージ\footnote{アメリカ数学会（American Mathematical Society）向けに開発されたものであるので，数学者向けの機能が備わっている．}には様々な便利な機能が備わっているので，以降では \AmS - \LaTeX　を含めて基本的な利用方法を解説していく．まず，\AmS - \LaTeX パッケージを利用するための「おまじない」をプリアンブル（\ref{sec:source}節参照）に
+\begin{screen}
+\begin{verbatim}
+\usepackage{amsmath}
+\end{verbatim}
+\end{screen}
+と記述しておく．
+
+\subsubsection{インライン数式とディスプレイ数式}
+
+\LaTeX で数式を記述する場合には，「インライン数式」と「ディスプレイ数式」の二つの方法がある．
+
+インライン数式とは，文中で数式を扱うための方法であり，
+文中で式を　\$ で囲むように記述する．
+例えば，ソースファイルで \verb|$ax+b$| と書いた場合，
+出力結果は $ax+b$ となる\footnote{細かいが  \$ で囲んだ部分の前後には半角スペースを入れた方が見栄えが良い． }．
+これに対して，数式モードを使わずに \verb|ax+b| と書いた場合には ax+b となり出力結果が異なっている．
+数式モードで出力すると斜体で出力されるが，数式モードを使わない場合はローマン体で出力されるので，
+くれぐれも間違えないようにすること．
+
+ディスプレイ数式とは，\verb|equation| や \verb|align| 環境を用いて，
+別行立てで数式を記述する方法である．
+例として，\verb|align| 環境を用いた数式を以下に記述する．
+
+\begin{screen}
+\begin{verbatim}
+\begin{align}
+f(x) = a x^{2} + b
+\end{align}
+\end{verbatim}
+\end{screen}
+このように記述すると，以下のように出力される．
+%
+\begin{align}
+f(x) = a x^{2} + b
+\end{align}
+
+この例では，\verb|x^{2}| としている部分は出力例のように \verb|x| の「肩にのせる」ものを指定している．べき乗などを記述する際に用いる．
+
+\subsubsection{verbatim 環境}
+
+数式とは直接関係ないが，\verb|verbatim|環境はソースファイルに記述した内容をそのまま出力する．例えば，
+\begin{screen}
+\begin{verbatim*}
+\begin{verbatim}
+\begin{align}
+f(x)=ax^{2}+b
+\end{align}
+\end{verbatim}
+\end{verbatim*}
+\end{screen}
+と記述すれば，
+\begin{verbatim}
+\begin{align}
+f(x)=ax^{2}+b
+\end{align}
+\end{verbatim}
+と表示される．ここでは \LaTeX　のソースファイルに記述する内容を示すために用いているが，今後作成するプログラムのソースファイルをレポート中に記載する場合などにも利用できる．また，\verb|verbatim| の代わりに \verb|verbatim*| 環境を用いれば半角スペースを記号に置き換えたものが表示される．ぜひ試してみるとよい．
+
+\subsubsection{数式で用いる文字・記号・演算子}
+
+数式を記述するために必要な文字・記号・演算子を表\ref{tab:math_symbols}にまとめる．記号などは英語での呼び方がコマンドになっている場合が多く，馴染みがないものもあると思うが，必要に応じてマニュアルを参照しながら書いていけば良い．表 \ref{tab:math_symbols} に挙げているのは一部分である．たとえば \cite{Kagishippo} のような Web サイトにも様々なコマンドがまとめられているので，随時参考にすればよい．
+
+\begin{table}[h]
+\centering
+\caption{数式で用いる文字・記号・演算子}
+\label{tab:math_symbols}
+\begin{tabular}{ccccc}
+\begin{tabular}{c|c}
+\multicolumn{2}{c}{ギリシャ文字}  \\
+コマンド & 出力 \\ \hline
+\verb|\alpha| & $\alpha$ \\
+\verb|\beta| & $\beta$ \\
+\verb|\gamma| & $\gamma$ \\
+\verb|\delta| & $\delta$ \\
+\verb|\pi| & $\pi$ \\
+\verb|\mu| & $\mu$ \\
+\verb|\sigma| & $\sigma$ \\
+\verb|\omega| & $\omega$ \\
+& \\
+&
+\end{tabular} & &
+\begin{tabular}{c|c}
+\multicolumn{2}{c}{関係・二項演算子} \\
+コマンド & 出力 \\ \hline
+\verb|\times| & $\times$ \\
+\verb|\div| & $\div$ \\
+\verb|\pm| & $\pm$ \\
+\verb|\ne| & $\ne$ \\
+\verb|\leq| & $\leq$ \\
+\verb|\geq| & $\geq$ \\
+\verb|\in| & $\ln$ \\
+\verb|\notin| & $\notin$ \\
+\verb|\cap| & $\cap$ \\
+\verb|\cup| & $\cup$
+\end{tabular} & &
+\begin{tabular}{c|c}
+\multicolumn{2}{c}{三角関数・数学記号} \\
+コマンド & 出力 \\ \hline
+\verb|\sin| & $\sin$ \\
+\verb|\cos| & $\cos$ \\
+\verb|\tan| & $\tan$ \\
+\verb|\log| & $\log$ \\
+\verb|\lim| & $\lim$ \\
+\verb|\exp| & $\exp$ \\
+\verb|\min| & $\min$ \\
+\verb|\max| & $\max$ \\
+\verb|\arg| & $\arg$ \\
+&
+\end{tabular}
+\end{tabular}
+\end{table}
+
+\subsubsection{行列}
+
+線形代数などでよく扱う行列も \LaTeX を使えば簡単に記述でき，美しく組版できる．\LaTeX 標準の \verb|array| 環境を使っても良いが，ここではより高機能な \verb|pmatrix| 環境を紹介する．
+
+\begin{screen}
+\begin{verbatim}
+\begin{align}
+\begin{pmatrix}
+\alpha & \beta
+\\
+\gamma & \delta
+\end{pmatrix}
+\end{align}
+\end{verbatim}
+\end{screen}
+このように記述すると，以下のように出力される．
+%
+\begin{align}
+\begin{pmatrix}
+\alpha & \beta
+\\
+\gamma & \delta
+\end{pmatrix}
+\end{align}
+
+行列の記述方法は\ref{sec:table}節で説明した表の記述方法と似ており，\verb|\\| が改行を示し，\verb|&| が列の区切りを示している．ソースと出力例を照らし合わせて見て欲しい．
+
+もう少し複雑な例としては，
+
+\begin{screen}
+\begin{verbatim}
+\begin{align}
+\begin{pmatrix}
+\alpha & \beta
+\\
+\gamma & \delta
+\end{pmatrix}
+\begin{pmatrix}
+x_{1}
+\\
+x_{2}
+\end{pmatrix}
+=
+\begin{pmatrix}
+\alpha x_{1} + \beta x_{2}
+\\
+\gamma x_{1} + \delta x_{2}
+\end{pmatrix}
+\end{align}
+\end{verbatim}
+\end{screen}
+
+とすれば，
+
+\begin{align}
+\begin{pmatrix}
+\alpha & \beta
+\\
+\gamma & \delta
+\end{pmatrix}
+\begin{pmatrix}
+x_{1}
+\\
+x_{2}
+\end{pmatrix}
+=
+\begin{pmatrix}
+\alpha x_{1} + \beta x_{2}
+\\
+\gamma x_{1} + \delta x_{2}
+\end{pmatrix}
+\end{align}
+
+のように出力される．\verb|pmatrix| 環境で表現される行列が一つの記号のようになっていることに注意されたい．
+
+\subsubsection{分数・平方根}
+
+これまでに紹介したものの他に，数式では分数や平方根もよく登場する．
+
+\begin{screen}
+\begin{verbatim}
+\begin{align}
+g(x) = \frac{a}{b} x^{2} + \sqrt{c}
+\end{align}
+\end{verbatim}
+\end{screen}
+このように記述すると，以下のように出力される．
+%
+\begin{align}
+g(x) = \frac{a}{b} x^{2} + \sqrt{c}
+\end{align}
+
+\verb|\frac{a}{b} | は分数を記述するコマンドである．出力例を見ればわかるように \verb|\frac| の次に分子，その次に分母を記述する．\verb|\sqrt{c}|  は平方根を記述するものである．\verb|\frac{a}{b}| と \verb|\sqrt{c}| のどちらも括弧の名に記述した数式が大きくなってもバランスよく数式が配置されるように自動調整される．

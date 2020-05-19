@@ -1,7 +1,6 @@
 FROM ubuntu:18.04
 # FROM ubuntu:latest
 
-
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update \

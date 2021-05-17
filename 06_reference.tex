@@ -9,13 +9,13 @@
 \begin{verbatim}
 \begin{thebibliography}{9}
    \bibitem{TeXText} 渡辺徹，好き好き \LaTeXe 初級編，2006．
-   \bibitem{Kagishippo} 「物理のかぎしっぽ」\TeX に関するメモ，2018年5月21日閲覧．
+   \bibitem{Kagishippo} 「物理のかぎしっぽ」\TeX に関するメモ，2021年5月17日閲覧．
 \end{thebibliography}
 \end{verbatim}
 \end{screen}
 この例は本書の末尾にある参考文献リストとほぼ同じもの出力するためのソースである\footnote{Webアドレスを書くと長くなるので省略している．}．簡単にその内容を説明する．
 \begin{itemize}
-\item \verb|\begin{thebibliography}| のあとにある \verb|{9}| の数値は参考文献の数を示している．もし参考文献の数が一桁であれば 9 ，二桁であれば 99 のように記述する．
+\item \verb|\begin{thebibliography}| のあとにある \verb|{9}| の数値は参考文献数の桁数を示している．もし参考文献の数が一桁であれば 9 ，二桁であれば 99 のように記述する．
 \item \verb|\bibitem| で始まる項目がそれぞれの参考文献を指している．\verb|\bibitem| は直後に参照キーを指定する．本文ではこの参照キーを使って参考文献を指し示す．
 \end{itemize}
 このような参考文献リストを用意したあとで，本文中では \verb|\cite| コマンドを使って参考文献について言及する．たとえば，

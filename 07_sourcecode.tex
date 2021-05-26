@@ -1,0 +1,45 @@
+\subsection{ソースコードの挿入}
+
+プログラムを作成するレポートでは，作成したソースコードを示すためにレポートに挿入することがある．
+\ref{sec:return}節で述べたように，\LaTeX では単独の改行は無視されるので，
+ソースコードをそのまま挿入しても正しく出力されない．
+ソースコードを見やすく挿入する方法はいくつかあるが，
+ここでは \verb+ moreverb + パッケージを使った方法を紹介する．
+
+まず，\verb+ moreverb + パッケージを使うために，
+プリアンブルに以下のように \verb+ \usepackage + 命令を追記する．
+\begin{screen}
+\begin{verbatim}
+\usepackage{moreverb}
+\end{verbatim}
+\end{screen}
+その上で，以下のように \verb+ listing + 環境の中にソースコードを書く．
+\begin{screen}
+   \begin{verbatim}
+\begin{listing}{1}
+/**
+ * Hello, World と表示するサンプル
+ */
+public class HelloWorld {
+   public static void main(String[] args) {
+      Systen.out.println("Hello, World");
+   }
+}
+\end{listing}
+\end{verbatim}
+\end{screen}
+そうすると，以下のように各行の冒頭に行番号をつけてソースコードが出力される．
+行番号が付くとレポート文中でソースコードの内容について言及する際に便利である．
+\begin{screen}
+\begin{listing}{1}
+/**
+ * Hello, World と表示するサンプル
+ */
+public class HelloWorld {
+   public static void main(String[] args) {
+      Systen.out.println("Hello, World");
+   }
+}
+\end{listing}
+\end{screen}
+

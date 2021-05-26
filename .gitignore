@@ -12,3 +12,5 @@ out/03_command1.fls
 out/03_command1.log
 out/03_command1.pdf
 out/03_command1.synctex.gz
+.DS_Store
+main.dvi
